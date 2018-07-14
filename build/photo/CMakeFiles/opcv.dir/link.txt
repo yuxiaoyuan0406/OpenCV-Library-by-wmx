@@ -1,0 +1,2 @@
+/usr/bin/ar qc libopcv.a  CMakeFiles/opcv.dir/opcv.cpp.o
+/usr/bin/ranlib libopcv.a

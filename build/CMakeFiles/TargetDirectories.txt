@@ -1,0 +1,6 @@
+/home/dennis/Programs/C/lib/wmx/v/build/CMakeFiles/rebuild_cache.dir
+/home/dennis/Programs/C/lib/wmx/v/build/CMakeFiles/edit_cache.dir
+/home/dennis/Programs/C/lib/wmx/v/build/CMakeFiles/v.dir
+/home/dennis/Programs/C/lib/wmx/v/build/photo/CMakeFiles/rebuild_cache.dir
+/home/dennis/Programs/C/lib/wmx/v/build/photo/CMakeFiles/edit_cache.dir
+/home/dennis/Programs/C/lib/wmx/v/build/photo/CMakeFiles/opcv.dir

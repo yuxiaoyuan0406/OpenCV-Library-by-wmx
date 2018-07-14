@@ -4,11 +4,12 @@
 
 class opcv
 {
-  public:
-	int readx(int &xw);
-	opcv();
-	~opcv();
+	public:
+		int readx(int &xw);
+		int readx(int &xw, int &yh);
+		opcv();
+		~opcv();
 
-  private:
+private:
 	raspicam::RaspiCam_Cv Camera; //Camera object
 };
