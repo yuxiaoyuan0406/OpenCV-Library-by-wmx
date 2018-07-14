@@ -7,22 +7,25 @@
 
 opcv::opcv()
 {
-	/*	
-	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+
+/*	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+	Camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
 	Camera.set(CV_CAP_PROP_FORMAT, CV_8UC3);
-	Camera.set(CV_CAP_PROP_GAIN, 30);
-	Camera.set(CV_CAP_PROP_SATURATION, 80);
-	Camera.set(CV_CAP_PROP_CONTRAST, 90);
-	Camera.set(CV_CAP_PROP_EXPOSURE, 10);
-*/
+	Camera.set(CV_CAP_PROP_BRIGHTNESS, 20);//亮度
+	Camera.set(CV_CAP_PROP_GAIN, 20);//感光度
+	Camera.set(CV_CAP_PROP_SATURATION, 90);//饱和度
+	Camera.set(CV_CAP_PROP_CONTRAST, 90);//对比度
+	Camera.set(CV_CAP_PROP_EXPOSURE, 12);//曝光
+	*/
 	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
 	Camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
 	Camera.set(CV_CAP_PROP_FORMAT, CV_8UC3);
-	Camera.set(CV_CAP_PROP_BRIGHTNESS, 20);
-	Camera.set(CV_CAP_PROP_GAIN, 20);
-	Camera.set(CV_CAP_PROP_SATURATION, 90);
-	Camera.set(CV_CAP_PROP_CONTRAST, 90);
-	Camera.set(CV_CAP_PROP_EXPOSURE, 12);
+	Camera.set(CV_CAP_PROP_BRIGHTNESS, 25);//亮度
+	Camera.set(CV_CAP_PROP_GAIN, 16);//感光度
+	Camera.set(CV_CAP_PROP_SATURATION, 120);//饱和度
+	Camera.set(CV_CAP_PROP_CONTRAST, 100);//对比度
+	Camera.set(CV_CAP_PROP_EXPOSURE, 5);//曝光
+
 	Camera.open();
 }
 
@@ -123,7 +126,8 @@ int opcv::readx(int &xw)
 	}
 	else
 	{
-		cout << "light found at " << (sum1 / (count1 - 1)) << endl;
+		cout << "light found at " << (sum1 / (count1 - 1)) << endl
+			 << "width = " << xw << "px" << endl;
 		return sum1 / (count1 - 1);
 	}
 }
