@@ -7,8 +7,8 @@
 
 opcv::opcv()
 {
-
-	/*	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+	/*
+	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
 	Camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
 	Camera.set(CV_CAP_PROP_FORMAT, CV_8UC3);
 	Camera.set(CV_CAP_PROP_BRIGHTNESS, 20);//亮度
@@ -17,6 +17,7 @@ opcv::opcv()
 	Camera.set(CV_CAP_PROP_CONTRAST, 90);//对比度
 	Camera.set(CV_CAP_PROP_EXPOSURE, 12);//曝光
 	*/
+/*
 	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
 	Camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
 	Camera.set(CV_CAP_PROP_FORMAT, CV_8UC3);
@@ -25,6 +26,16 @@ opcv::opcv()
 	Camera.set(CV_CAP_PROP_SATURATION, 120); //饱和度
 	Camera.set(CV_CAP_PROP_CONTRAST, 100);   //对比度
 	Camera.set(CV_CAP_PROP_EXPOSURE, 5);	 //曝光
+*/
+	Camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+	Camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+	Camera.set(CV_CAP_PROP_FORMAT, CV_8UC3);
+	Camera.set(CV_CAP_PROP_BRIGHTNESS, 20);  //亮度
+	Camera.set(CV_CAP_PROP_GAIN, 15);		 //感光度
+	Camera.set(CV_CAP_PROP_SATURATION, 80); //饱和度
+	Camera.set(CV_CAP_PROP_CONTRAST, 80);   //对比度
+	Camera.set(CV_CAP_PROP_EXPOSURE, 5);	 //曝光
+
 
 	Camera.open();
 }
@@ -50,7 +61,7 @@ int opcv::readx(int &xw)
 
 			uchar *data1 = image.ptr<uchar>(i, j); // �������ֵ
 
-			if (data1[0] < 50 && data1[1] < 50 && data1[2] > 230)
+			if (data1[0] < 50 && data1[1] < 50 && data1[2] > 200)
 			//ע�������012��Ӧ����bgr����Χ����˼�Ƿ�ֹ���ߵ�����Ӱ�죬�����ʵ��ſ�������Ҳ����ѡ����������ɫ�ռ䣬����ֱ��ȡ������Ӱ�죬����HSV
 			{
 				if (k == 1)
@@ -60,7 +71,25 @@ int opcv::readx(int &xw)
 				}
 			}
 
-			if (data1[0] < 50 && data1[1] < 50 && data1[2] < 230)
+			if (j == 639 && x2 == -1 && x1 != -1)
+			{
+				x2 = 639;
+				int x3 = (x1 + x2) / 2;
+				uchar *data2 = image.ptr<uchar>(i, x3);
+
+				if (data2[0] < 50 && data2[1] < 50 && data2[2] > 200)
+				{
+					sum1 += x3;
+					count1++;
+					if (tempx < (x2 - x1))
+					{
+						tempx = (x2 - x1);
+						
+					}
+				}
+			}
+
+			if (data1[0] < 50 && data1[1] < 50 && data1[2] < 200 && x2 == -1)
 			{
 				if (k == 2)
 				{
@@ -72,7 +101,7 @@ int opcv::readx(int &xw)
 					int x3 = (x1 + x2) / 2;
 					uchar *data2 = image.ptr<uchar>(i, x3);
 
-					if (data2[0] < 50 && data2[1] < 50 && data2[2] > 230)
+					if (data2[0] < 50 && data2[1] < 50 && data2[2] > 200)
 					{
 						sum1 += x3;
 						count1++;
@@ -139,7 +168,7 @@ int opcv::readx(int &xw, int &yh)
 
 			uchar *data1 = image.ptr<uchar>(i, j); // �������ֵ
 
-			if (data1[0] < 50 && data1[1] < 50 && data1[2] > 230)
+			if (data1[0] < 50 && data1[1] < 50 && data1[2] > 200)
 			//ע�������012��Ӧ����bgr����Χ����˼�Ƿ�ֹ���ߵ�����Ӱ�죬�����ʵ��ſ�������Ҳ����ѡ����������ɫ�ռ䣬����ֱ��ȡ������Ӱ�죬����HSV
 			{
 				if (k == 1)
@@ -149,7 +178,25 @@ int opcv::readx(int &xw, int &yh)
 				}
 			}
 
-			if (data1[0] < 50 && data1[1] < 50 && data1[2] < 230)
+			if (j == 639 && x2 == -1 && x1 != -1)
+			{
+				x2 = 639;
+				int x3 = (x1 + x2) / 2;
+				uchar *data2 = image.ptr<uchar>(i, x3);
+
+				if (data2[0] < 50 && data2[1] < 50 && data2[2] > 200)
+				{
+					sum1 += x3;
+					count1++;
+					if (tempx < (x2 - x1))
+					{
+						tempx = (x2 - x1);
+						tempy = i;
+					}
+				}
+			}
+
+			if (data1[0] < 50 && data1[1] < 50 && data1[2] < 200 && x2 == -1)
 			{
 				if (k == 2)
 				{
@@ -161,7 +208,7 @@ int opcv::readx(int &xw, int &yh)
 					int x3 = (x1 + x2) / 2;
 					uchar *data2 = image.ptr<uchar>(i, x3);
 
-					if (data2[0] < 50 && data2[1] < 50 && data2[2] > 230)
+					if (data2[0] < 50 && data2[1] < 50 && data2[2] > 200)
 					{
 						sum1 += x3;
 						count1++;
